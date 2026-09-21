@@ -3,447 +3,376 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clement & Fikile — Ndebele Wedding Invitation</title>
+<title>Umabo Ceremony — Simangaliso & Fikile</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --ndebele-black: #0a0a0a;
-    --ndebele-white: #ffffff;
-    --ndebele-red: #d4213d;
-    --ndebele-blue: #1a4b8c;
-    --ndebele-yellow: #f5c518;
-    --ndebele-green: #1a7a3a;
+    --ivory: #f8f3ec;
+    --cream: #f0e8dc;
+    --black: #1a1a1a;
+    --burgundy: #6b2737;
+    --burgundy-deep: #4a1a28;
+    --pink: #c48b8b;
+    --terracotta: #b8704a;
+    --cobalt: #1a4b8c;
+    --mustard: #c49a2a;
+    --gold: #b08050;
   }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--ndebele-black);
-    color: var(--ndebele-white);
+    background: var(--ivory);
+    color: var(--black);
     overflow-x: hidden;
-    min-height: 100vh;
   }
 
-  /* ===== GEOMETRIC BORDER FRAME ===== */
-  .border-frame {
+  /* ===== INVITATION CONTAINER ===== */
+  .invitation {
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--ivory);
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  /* ===== NDEBELE GEOMETRIC BORDER ===== */
+  .ndebele-border {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     z-index: 1000;
   }
-  .border-frame::before {
+  .ndebele-border::before {
     content: '';
     position: absolute;
     inset: 0;
-    border: 8px solid var(--ndebele-black);
+    border: 12px solid var(--black);
   }
-  .border-frame::after {
-    content: '';
-    position: absolute;
-    inset: 8px;
-    border: 6px solid var(--ndebele-yellow);
-  }
-
-  /* ===== TOP GEOMETRIC PANEL ===== */
-  .top-panel {
-    min-height: 35vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  .top-panel::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 0; height: 0;
-    border-left: 50vw solid var(--ndebele-red);
-    border-bottom: 35vh solid transparent;
-    z-index: 1;
-  }
-  .top-panel::after {
-    content: '';
-    position: absolute;
-    top: 0; right: 0;
-    width: 0; height: 0;
-    border-right: 50vw solid var(--ndebele-blue);
-    border-bottom: 35vh solid transparent;
-    z-index: 1;
-  }
-
-  /* Central diamond */
-  .top-diamond {
-    position: absolute;
-    width: 120px; height: 120px;
-    background: var(--ndebele-yellow);
-    transform: rotate(45deg);
-    z-index: 5;
-    border: 4px solid var(--ndebele-black);
-    top: 50%;
-    left: 50%;
-    margin-top: -60px;
-    margin-left: -60px;
-  }
-  .top-diamond::before {
+  .ndebele-border::after {
     content: '';
     position: absolute;
     inset: 12px;
-    background: var(--ndebele-red);
-    border: 3px solid var(--ndebele-black);
-  }
-  .top-diamond::after {
-    content: '';
-    position: absolute;
-    inset: 24px;
-    background: var(--ndebele-white);
-    border: 2px solid var(--ndebele-black);
-  }
-
-  /* Zigzag strip */
-  .zigzag-top {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 30px;
-    background: 
-      linear-gradient(135deg, var(--ndebele-green) 25%, transparent 25%) -20px 0,
-      linear-gradient(225deg, var(--ndebele-green) 25%, transparent 25%) -20px 0,
-      linear-gradient(315deg, var(--ndebele-green) 25%, transparent 25%),
-      linear-gradient(45deg, var(--ndebele-green) 25%, transparent 25%);
-    background-size: 40px 30px;
-    background-color: var(--ndebele-black);
-    z-index: 10;
-  }
-
-  /* ===== STEPPED STRIP ===== */
-  .stepped-strip {
-    height: 40px;
-    display: flex;
-    width: 100%;
-    z-index: 10;
-  }
-  .step-block {
-    flex: 1;
-    height: 100%;
-    border: 2px solid var(--ndebele-black);
-  }
-
-  /* ===== CENTER SECTION ===== */
-  .center-section {
-    min-height: 40vh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: var(--ndebele-white);
-    padding: 40px 20px;
-    z-index: 10;
-  }
-
-  /* Name frame */
-  .name-frame {
-    position: relative;
-    padding: 60px 80px;
-    text-align: center;
-  }
-  .name-frame::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 6px solid var(--ndebele-black);
-  }
-  .name-frame::after {
-    content: '';
-    position: absolute;
-    inset: 12px;
-    border: 4px solid var(--ndebele-red);
+    border: 4px solid var(--burgundy);
   }
 
   /* Corner diamonds */
   .corner-diamond {
-    position: absolute;
-    width: 30px; height: 30px;
-    background: var(--ndebele-yellow);
-    border: 3px solid var(--ndebele-black);
+    position: fixed;
+    width: 40px; height: 40px;
+    background: var(--mustard);
+    border: 3px solid var(--black);
     transform: rotate(45deg);
+    z-index: 1001;
   }
-  .corner-diamond.tl { top: -15px; left: -15px; }
-  .corner-diamond.tr { top: -15px; right: -15px; }
-  .corner-diamond.bl { bottom: -15px; left: -15px; }
-  .corner-diamond.br { bottom: -15px; right: -15px; }
+  .corner-diamond.tl { top: 20px; left: 20px; }
+  .corner-diamond.tr { top: 20px; right: 20px; }
+  .corner-diamond.bl { bottom: 20px; left: 20px; }
+  .corner-diamond.br { bottom: 20px; right: 20px; }
 
-  /* Text styles */
-  .prelude {
-    font-size: 0.85rem;
+  /* Corner stepped patterns */
+  .corner-step {
+    position: fixed;
+    z-index: 1001;
+  }
+  .corner-step::before,
+  .corner-step::after {
+    content: '';
+    position: absolute;
+    background: var(--burgundy);
+    border: 2px solid var(--black);
+  }
+  .step-tl { top: 12px; left: 12px; }
+  .step-tl::before { width: 60px; height: 8px; top: 0; left: 0; }
+  .step-tl::after { width: 8px; height: 60px; top: 0; left: 0; }
+
+  .step-tr { top: 12px; right: 12px; }
+  .step-tr::before { width: 60px; height: 8px; top: 0; right: 0; }
+  .step-tr::after { width: 8px; height: 60px; top: 0; right: 0; }
+
+  .step-bl { bottom: 12px; left: 12px; }
+  .step-bl::before { width: 60px; height: 8px; bottom: 0; left: 0; }
+  .step-bl::after { width: 8px; height: 60px; bottom: 0; left: 0; }
+
+  .step-br { bottom: 12px; right: 12px; }
+  .step-br::before { width: 60px; height: 8px; bottom: 0; right: 0; }
+  .step-br::after { width: 8px; height: 60px; bottom: 0; right: 0; }
+
+  /* ===== TOP HEADING ===== */
+  .top-heading {
+    text-align: center;
+    padding: 50px 40px 30px;
+    position: relative;
+  }
+  .umabo-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .ceremony-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--black);
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--ndebele-black);
-    margin-bottom: 15px;
-    font-weight: 600;
-  }
-  .couple-names {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: var(--ndebele-black);
-    margin-bottom: 5px;
-  }
-  .ampersand {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--ndebele-red);
-    display: block;
-    margin: 5px 0;
-  }
-  .wedding-date {
-    font-size: 1.1rem;
-    letter-spacing: 4px;
-    color: var(--ndebele-blue);
-    margin-top: 15px;
-    font-weight: 600;
   }
 
-  /* Geo divider */
+  /* Geometric divider */
   .geo-divider {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
+    gap: 12px;
+    margin: 25px 0;
   }
   .geo-divider .line {
-    width: 60px;
-    height: 4px;
-    background: var(--ndebele-black);
+    width: 50px;
+    height: 2px;
+    background: var(--black);
   }
   .geo-divider .diamond {
-    width: 20px; height: 20px;
-    background: var(--ndebele-yellow);
-    border: 3px solid var(--ndebele-black);
+    width: 12px; height: 12px;
+    background: var(--burgundy);
+    border: 2px solid var(--black);
     transform: rotate(45deg);
+  }
+  .geo-divider .diamond.small {
+    width: 8px; height: 8px;
+    background: var(--mustard);
+    border: 1px solid var(--black);
+  }
+
+  /* ===== PHOTO SECTION ===== */
+  .photo-section {
+    padding: 0 40px;
+    position: relative;
+  }
+  .photo-frame {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -16px;
+    border: 4px solid var(--black);
+    background: var(--cream);
+    z-index: -1;
+  }
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border: 2px solid var(--burgundy);
+    z-index: -1;
+  }
+
+  /* Side geometric accents */
+  .photo-accent-left,
+  .photo-accent-right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 80px;
+    z-index: 2;
+  }
+  .photo-accent-left {
+    left: -30px;
+    background: 
+      linear-gradient(to bottom, 
+        var(--burgundy) 0%, var(--burgundy) 25%,
+        var(--mustard) 25%, var(--mustard) 50%,
+        var(--cobalt) 50%, var(--cobalt) 75%,
+        var(--burgundy) 75%, var(--burgundy) 100%);
+    border: 2px solid var(--black);
+  }
+  .photo-accent-right {
+    right: -30px;
+    background: 
+      linear-gradient(to bottom, 
+        var(--cobalt) 0%, var(--cobalt) 25%,
+        var(--mustard) 25%, var(--mustard) 50%,
+        var(--burgundy) 50%, var(--burgundy) 75%,
+        var(--cobalt) 75%, var(--cobalt) 100%);
+    border: 2px solid var(--black);
+  }
+  .couple-photo {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== NAMES SECTION ===== */
+  .names-section {
+    text-align: center;
+    padding: 40px 40px 20px;
+  }
+  .couple-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    font-weight: 400;
+    color: var(--black);
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+  .ampersand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--burgundy);
+    display: block;
+    margin: 5px 0;
+  }
+
+  /* ===== INVITATION TEXT ===== */
+  .invitation-text {
+    text-align: center;
+    padding: 20px 50px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--black);
+    font-weight: 400;
+  }
+  .invitation-text .family-names {
+    font-weight: 600;
+    color: var(--burgundy);
+  }
+  .invitation-text .honour {
+    font-style: italic;
+    color: var(--black);
+    opacity: 0.8;
   }
 
   /* ===== DETAILS SECTION ===== */
   .details-section {
-    background: var(--ndebele-white);
-    padding: 40px 20px;
-    position: relative;
-    z-index: 10;
+    padding: 30px 40px;
+    text-align: center;
   }
   .details-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0;
-    max-width: 600px;
+    max-width: 400px;
     margin: 0 auto;
+    border: 2px solid var(--black);
   }
-  .detail-card {
+  .detail-item {
+    padding: 20px 10px;
+    border-right: 1px solid var(--black);
     text-align: center;
-    padding: 30px 15px;
-    border: 3px solid var(--ndebele-black);
-    position: relative;
   }
-  .detail-card:nth-child(1) { background: var(--ndebele-red); }
-  .detail-card:nth-child(2) { background: var(--ndebele-blue); }
-  .detail-card:nth-child(3) { background: var(--ndebele-green); }
-
-  .detail-card .icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    display: block;
+  .detail-item:last-child {
+    border-right: none;
   }
-  .detail-card .label {
-    font-size: 0.7rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--ndebele-white);
-    opacity: 0.8;
+  .detail-item .icon {
+    font-size: 1.2rem;
     margin-bottom: 8px;
+    display: block;
+    color: var(--burgundy);
   }
-  .detail-card .value {
-    font-family: 'Playfair Display', serif;
+  .detail-item .value {
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
-    font-weight: 700;
-    color: var(--ndebele-white);
-    line-height: 1.4;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.3;
+  }
+  .detail-item .label {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-top: 4px;
+    font-weight: 500;
   }
 
-  /* ===== BOTTOM PANEL ===== */
-  .bottom-panel {
-    min-height: 25vh;
-    position: relative;
-    overflow: hidden;
+  /* ===== BOTTOM STRIP ===== */
+  .bottom-strip {
+    height: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 10;
+    margin: 30px 0 0;
   }
-  .bottom-panel::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 0;
-    border-left: 50vw solid var(--ndebele-green);
-    border-top: 25vh solid transparent;
-    z-index: 1;
-  }
-  .bottom-panel::after {
-    content: '';
-    position: absolute;
-    bottom: 0; right: 0;
-    width: 0; height: 0;
-    border-right: 50vw solid var(--ndebele-yellow);
-    border-top: 25vh solid transparent;
-    z-index: 1;
+  .strip-block {
+    flex: 1;
+    height: 100%;
+    border: 1px solid var(--black);
   }
 
-  .rsvp-area {
-    position: relative;
-    z-index: 10;
+  /* ===== RSVP SECTION ===== */
+  .rsvp-section {
     text-align: center;
+    padding: 30px 40px 50px;
   }
-  .rsvp-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--ndebele-black);
-    margin-bottom: 15px;
+  .rsvp-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 12px;
+    font-weight: 500;
   }
   .rsvp-btn {
     display: inline-block;
-    padding: 15px 40px;
+    padding: 12px 35px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--ndebele-white);
-    background: var(--ndebele-black);
-    border: 4px solid var(--ndebele-black);
+    color: var(--ivory);
+    background: var(--black);
+    border: 2px solid var(--black);
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
   }
   .rsvp-btn:hover {
-    background: var(--ndebele-red);
-    border-color: var(--ndebele-red);
-    transform: translateY(-2px);
+    background: var(--burgundy);
+    border-color: var(--burgundy);
   }
   .rsvp-phone {
-    font-size: 1rem;
-    letter-spacing: 3px;
-    color: var(--ndebele-black);
-    margin-top: 15px;
-    font-weight: 600;
-  }
-
-  /* ===== CHEVRON STRIP ===== */
-  .chevron-strip {
-    height: 25px;
-    background: 
-      linear-gradient(135deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
-      linear-gradient(225deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
-      linear-gradient(315deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
-      linear-gradient(45deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0;
-    background-size: 25px 25px;
-    background-color: var(--ndebele-black);
-    z-index: 10;
-  }
-
-  /* ===== MOTIF STRIP ===== */
-  .geo-motif-strip {
-    height: 20px;
-    display: flex;
-    width: 100%;
-    z-index: 10;
-  }
-  .motif {
-    flex: 1;
-    height: 100%;
-    border: 1px solid var(--ndebele-black);
-  }
-
-  /* ===== COUNTDOWN ===== */
-  .countdown-section {
-    background: var(--ndebele-black);
-    padding: 40px 20px;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-  }
-  .countdown-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--ndebele-yellow);
-    margin-bottom: 25px;
-    letter-spacing: 3px;
-  }
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-  .countdown-item {
-    text-align: center;
-  }
-  .countdown-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--ndebele-white);
-    display: block;
-    line-height: 1;
-  }
-  .countdown-label {
-    font-size: 0.7rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--black);
+    margin-top: 10px;
+    font-weight: 400;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--ndebele-yellow);
-    margin-top: 5px;
   }
 
-  /* ===== MUSIC TOGGLE ===== */
-  .music-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px; height: 50px;
-    border-radius: 0;
-    background: var(--ndebele-yellow);
-    border: 3px solid var(--ndebele-black);
-    color: var(--ndebele-black);
-    font-size: 1.3rem;
-    cursor: pointer;
-    z-index: 2000;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(45deg);
-  }
-  .music-toggle span {
-    transform: rotate(-45deg);
-  }
-  .music-toggle:hover {
-    background: var(--ndebele-red);
-    color: var(--ndebele-white);
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    color: var(--black);
+    opacity: 0.6;
+    font-style: italic;
   }
 
   /* ===== ANIMATIONS ===== */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   .animate-on-scroll.visible {
@@ -453,168 +382,135 @@
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 600px) {
-    .name-frame { padding: 40px 30px; }
-    .details-grid { grid-template-columns: 1fr; }
-    .countdown { gap: 15px; }
-    .countdown-number { font-size: 2rem; }
-    .top-diamond { width: 80px; height: 80px; margin-top: -40px; margin-left: -40px; }
-    .top-diamond::before { inset: 8px; }
-    .top-diamond::after { inset: 16px; }
+    .top-heading { padding: 40px 30px 20px; }
+    .photo-section { padding: 0 30px; }
+    .names-section { padding: 30px 30px 15px; }
+    .invitation-text { padding: 15px 30px; }
+    .details-section { padding: 20px 30px; }
+    .rsvp-section { padding: 20px 30px 40px; }
+    .details-grid { max-width: 100%; }
+    .corner-diamond { width: 30px; height: 30px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Border Frame -->
-<div class="border-frame"></div>
+<div class="invitation">
 
-<!-- ===== TOP PANEL ===== -->
-<div class="top-panel">
-  <div class="top-diamond"></div>
-  <div class="zigzag-top"></div>
-</div>
+  <!-- Ndebele Border -->
+  <div class="ndebele-border"></div>
+  <div class="corner-diamond tl"></div>
+  <div class="corner-diamond tr"></div>
+  <div class="corner-diamond bl"></div>
+  <div class="corner-diamond br"></div>
+  <div class="corner-step step-tl"></div>
+  <div class="corner-step step-tr"></div>
+  <div class="corner-step step-bl"></div>
+  <div class="corner-step step-br"></div>
 
-<!-- Stepped Strip -->
-<div class="stepped-strip">
-  <div class="step-block" style="background: var(--ndebele-red);"></div>
-  <div class="step-block" style="background: var(--ndebele-yellow);"></div>
-  <div class="step-block" style="background: var(--ndebele-blue);"></div>
-  <div class="step-block" style="background: var(--ndebele-green);"></div>
-  <div class="step-block" style="background: var(--ndebele-red);"></div>
-  <div class="step-block" style="background: var(--ndebele-yellow);"></div>
-  <div class="step-block" style="background: var(--ndebele-blue);"></div>
-  <div class="step-block" style="background: var(--ndebele-green);"></div>
-</div>
+  <!-- ===== TOP HEADING ===== -->
+  <div class="top-heading animate-on-scroll">
+    <div class="umabo-label">Umabo Ceremony</div>
+    <div class="ceremony-label">UMABO</div>
+  </div>
 
-<!-- ===== CENTER SECTION ===== -->
-<div class="center-section">
-  <div class="name-frame animate-on-scroll">
-    <div class="corner-diamond tl"></div>
-    <div class="corner-diamond tr"></div>
-    <div class="corner-diamond bl"></div>
-    <div class="corner-diamond br"></div>
-    
-    <div class="prelude">We're getting married</div>
+  <!-- Geometric Divider -->
+  <div class="geo-divider">
+    <div class="line"></div>
+    <div class="diamond small"></div>
+    <div class="diamond"></div>
+    <div class="diamond small"></div>
+    <div class="line"></div>
+  </div>
+
+  <!-- ===== PHOTO SECTION ===== -->
+  <div class="photo-section animate-on-scroll">
+    <div class="photo-frame">
+      <div class="photo-accent-left"></div>
+      <div class="photo-accent-right"></div>
+      <img src="couple-photo.jpg" alt="Simangaliso and Fikile" class="couple-photo">
+    </div>
+  </div>
+
+  <!-- ===== NAMES SECTION ===== -->
+  <div class="names-section animate-on-scroll">
     <h1 class="couple-names">
-      Clement
+      Simangaliso
       <span class="ampersand">&</span>
       Fikile
     </h1>
-    <div class="wedding-date">Sunday, 29 November 2026</div>
   </div>
 
+  <!-- Geometric Divider -->
   <div class="geo-divider">
     <div class="line"></div>
     <div class="diamond"></div>
     <div class="line"></div>
   </div>
-</div>
 
-<!-- Chevron Strip -->
-<div class="chevron-strip"></div>
+  <!-- ===== INVITATION TEXT ===== -->
+  <div class="invitation-text animate-on-scroll">
+    <p>The <span class="family-names">Ledwaba</span> and <span class="family-names">Nkabinde</span> families</p>
+    <p>hereby invite you to share in</p>
+    <p>the Umabo ceremony</p>
+    <p class="honour">in honour of Simangaliso and Fikile</p>
+  </div>
 
-<!-- ===== DETAILS SECTION ===== -->
-<div class="details-section">
-  <div class="details-grid animate-on-scroll">
-    <div class="detail-card">
-      <span class="icon">📅</span>
-      <div class="label">Date</div>
-      <div class="value">29 Nov 2026</div>
-    </div>
-    <div class="detail-card">
-      <span class="icon">📍</span>
-      <div class="label">Venue</div>
-      <div class="value">4766 Johnny Mokua<br>Mohlakeng</div>
-    </div>
-    <div class="detail-card">
-      <span class="icon">⏰</span>
-      <div class="label">Time</div>
-      <div class="value">[Time TBC]</div>
+  <!-- ===== DETAILS SECTION ===== -->
+  <div class="details-section animate-on-scroll">
+    <div class="details-grid">
+      <div class="detail-item">
+        <span class="icon">◆</span>
+        <div class="value">29 November 2026</div>
+        <div class="label">Date</div>
+      </div>
+      <div class="detail-item">
+        <span class="icon">◆</span>
+        <div class="value">12h00</div>
+        <div class="label">Time</div>
+      </div>
+      <div class="detail-item">
+        <span class="icon">◆</span>
+        <div class="value">4766 Johnny Mokua Street<br>Mohlakeng</div>
+        <div class="label">Venue</div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Motif Strip -->
-<div class="geo-motif-strip">
-  <div class="motif" style="background: var(--ndebele-red);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-blue);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-green);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-yellow);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-red);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-blue);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-green);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-  <div class="motif" style="background: var(--ndebele-yellow);"></div>
-  <div class="motif" style="background: var(--ndebele-white);"></div>
-</div>
-
-<!-- ===== COUNTDOWN ===== -->
-<div class="countdown-section">
-  <div class="countdown-title">Counting Down</div>
-  <div class="countdown">
-    <div class="countdown-item">
-      <span class="countdown-number" id="days">--</span>
-      <span class="countdown-label">Days</span>
-    </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="hours">--</span>
-      <span class="countdown-label">Hours</span>
-    </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="mins">--</span>
-      <span class="countdown-label">Minutes</span>
-    </div>
-    <div class="countdown-item">
-      <span class="countdown-number" id="secs">--</span>
-      <span class="countdown-label">Seconds</span>
-    </div>
+  <!-- Bottom Geometric Strip -->
+  <div class="bottom-strip">
+    <div class="strip-block" style="background: var(--burgundy);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--cobalt);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--mustard);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--burgundy);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--cobalt);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--mustard);"></div>
+    <div class="strip-block" style="background: var(--ivory);"></div>
+    <div class="strip-block" style="background: var(--burgundy);"></div>
   </div>
-</div>
 
-<!-- ===== BOTTOM PANEL ===== -->
-<div class="bottom-panel">
-  <div class="rsvp-area animate-on-scroll">
-    <div class="rsvp-title">RSVP</div>
-    <a href="https://wa.me/27835225889?text=Hi%20Clement!%20I%27d%20love%20to%20attend%20your%20wedding%20on%2029%20Nov%20🙏" class="rsvp-btn">
+  <!-- ===== RSVP SECTION ===== -->
+  <div class="rsvp-section animate-on-scroll">
+    <div class="rsvp-label">Kindly Respond</div>
+    <a href="https://wa.me/27835225889?text=Hi%20Simangaliso!%20I%27d%20love%20to%20attend%20your%20Umabo%20ceremony%20on%2029%20Nov%20🙏" class="rsvp-btn">
       RSVP via WhatsApp
     </a>
     <div class="rsvp-phone">083 522 5889</div>
   </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Heritage · Family · Love · Welcoming · Celebration · Tradition · Elegance
+  </div>
+
 </div>
 
-<!-- Music Toggle -->
-<button class="music-toggle" id="musicBtn" onclick="toggleMusic()"><span>🎵</span></button>
-
-<!-- Audio -->
-<audio id="bgMusic" loop>
-  <source src="song.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-// Countdown
-const weddingDate = new Date('2026-11-29T10:00:00+02:00');
-function updateCountdown() {
-  const now = new Date();
-  const diff = weddingDate - now;
-  if (diff <= 0) return;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const secs = Math.floor((diff % (1000 * 60)) / 1000);
-  document.getElementById('days').textContent = days;
-  document.getElementById('hours').textContent = hours;
-  document.getElementById('mins').textContent = mins;
-  document.getElementById('secs').textContent = secs;
-}
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -624,21 +520,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-// Music
-let isPlaying = false;
-function toggleMusic() {
-  const audio = document.getElementById('bgMusic');
-  const btn = document.getElementById('musicBtn');
-  if (isPlaying) {
-    audio.pause();
-    btn.innerHTML = '<span>🎵</span>';
-  } else {
-    audio.play().catch(() => {});
-    btn.innerHTML = '<span>🎶</span>';
-  }
-  isPlaying = !isPlaying;
-}
 </script>
 
 </body>
