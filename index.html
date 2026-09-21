@@ -10,23 +10,31 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --sage: #90a080;
-    --sage-light: #b0c0a0;
-    --sage-dark: #607050;
-    --cream: #f5f0e8;
-    --cream-light: #faf8f4;
-    --brown: #604030;
-    --brown-light: #8b6b4a;
+    --sage: #c0a090;
+    --sage-light: #d0b0a0;
+    --sage-dark: #a08070;
+    --cream: #f0e0d0;
+    --cream-light: #f8ece4;
+    --brown: #806050;
+    --brown-light: #a08070;
     --text-dark: #2d2d2d;
     --text-light: #f0f0f0;
-    --gold: #c49a2a;
+    --gold: #b08050;
   }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--cream);
+    background: url('background-photo.jpg') center/cover no-repeat fixed;
     color: var(--text-dark);
     overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(240, 224, 208, 0.85);
+    z-index: -1;
   }
 
   /* ===== BOTANICAL LEAF BORDER ===== */
