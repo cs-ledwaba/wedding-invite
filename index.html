@@ -394,18 +394,33 @@
 
   /* ===== ANIMATIONS ===== */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
   }
   .animate-on-scroll {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
   .animate-on-scroll.visible {
     opacity: 1;
     transform: translateY(0);
   }
+  .animate-on-scroll.delay-1 { transition-delay: 0.2s; }
+  .animate-on-scroll.delay-2 { transition-delay: 0.4s; }
+  .animate-on-scroll.delay-3 { transition-delay: 0.6s; }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 600px) {
@@ -437,7 +452,7 @@
 
   <!-- ===== TOP HEADING ===== -->
   <div class="top-heading animate-on-scroll">
-    <div class="umabo-label">Something Traditional</div>
+    <div class="umabo-label">You are cordially invited</div>
     <div class="ceremony-label">UMABO</div>
   </div>
 
@@ -460,7 +475,7 @@
   </div>
 
   <!-- ===== NAMES SECTION ===== -->
-  <div class="names-section animate-on-scroll">
+  <div class="names-section animate-on-scroll delay-1">
     <h1 class="couple-names">
       Simangaliso
       <span class="ampersand">&</span>
@@ -476,7 +491,7 @@
   </div>
 
   <!-- ===== INVITATION TEXT ===== -->
-  <div class="invitation-text animate-on-scroll">
+  <div class="invitation-text animate-on-scroll delay-2">
     <p>The <span class="family-names">Ledwaba</span> and <span class="family-names">Nkabinde</span> families</p>
     <p>hereby invite you to share in</p>
     <p>the Umabo ceremony</p>
@@ -484,7 +499,7 @@
   </div>
 
   <!-- ===== DETAILS SECTION ===== -->
-  <div class="details-section animate-on-scroll">
+  <div class="details-section animate-on-scroll delay-3">
     <div class="details-grid">
       <div class="detail-item">
         <span class="icon">◆</span>
@@ -501,10 +516,13 @@
         <div class="value">4766 Johnny Mokua Street<br>Mohlakeng</div>
         <div class="label">Venue</div>
       </div>
+      <div class="detail-item">
+        <span class="icon">◆</span>
+        <div class="value">Something Traditional</div>
+        <div class="label">Dress Code</div>
+      </div>
     </div>
   </div>
-
-  <!-- Bottom Geometric Strip -->
   <div class="bottom-strip">
     <div class="strip-block" style="background: var(--burgundy);"></div>
     <div class="strip-block" style="background: var(--ivory);"></div>
@@ -522,7 +540,7 @@
   </div>
 
   <!-- ===== RSVP SECTION ===== -->
-  <div class="rsvp-section animate-on-scroll">
+  <div class="rsvp-section animate-on-scroll delay-3">
     <div class="rsvp-label">Kindly Respond</div>
     <a href="https://wa.me/27835225889?text=Hi%20Simangaliso!%20I%27d%20love%20to%20attend%20your%20Umabo%20ceremony%20on%2029%20Nov%20🙏" class="rsvp-btn">
       RSVP via WhatsApp
@@ -546,7 +564,12 @@
 </audio>
 
 <script>
-// Scroll animations
+// Auto-play music from verse 1
+const audio = document.getElementById('bgMusic');
+audio.currentTime = 18; // Start from verse 1
+audio.play().catch(() => {}); // Try auto-play
+
+// Scroll animations - text appears as you scroll
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -556,10 +579,9 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.2 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
-// Music
-let isPlaying = false;
+// Music toggle
+let isPlaying = true;
 function toggleMusic() {
-  const audio = document.getElementById('bgMusic');
   const btn = document.getElementById('musicBtn');
   if (isPlaying) {
     audio.pause();
