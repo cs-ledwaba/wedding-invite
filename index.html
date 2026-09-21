@@ -5,68 +5,58 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Clement & Fikile — Wedding Invitation</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --ndebele-red: #FF2D55;
-    --ndebele-yellow: #FFCC00;
-    --ndebele-green: #00C853;
-    --ndebele-blue: #2979FF;
-    --ndebele-black: #0D0D0D;
-    --ndebele-white: #FAFAFA;
-    --bg-dark: #f5f0e8;
-    --bg-darker: #ebe5d8;
+    --sage: #90a080;
+    --sage-light: #b0c0a0;
+    --sage-dark: #607050;
+    --cream: #f5f0e8;
+    --cream-light: #faf8f4;
+    --brown: #604030;
+    --brown-light: #8b6b4a;
+    --text-dark: #2d2d2d;
+    --text-light: #f0f0f0;
+    --gold: #c49a2a;
   }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background: var(--bg-dark);
-    color: var(--ndebele-black);
+    background: var(--cream);
+    color: var(--text-dark);
     overflow-x: hidden;
   }
 
-  /* ===== NDEBELE GEOMETRIC BORDER ===== */
-  .ndebele-border {
+  /* ===== BOTANICAL LEAF BORDER ===== */
+  .leaf-border {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     z-index: 100;
   }
-  .ndebele-border::before,
-  .ndebele-border::after {
+  .leaf-border::before,
+  .leaf-border::after {
     content: '';
     position: absolute;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--ndebele-red) 0px, var(--ndebele-red) 20px,
-      var(--ndebele-yellow) 20px, var(--ndebele-yellow) 40px,
-      var(--ndebele-green) 40px, var(--ndebele-green) 60px,
-      var(--ndebele-blue) 60px, var(--ndebele-blue) 80px
-    );
-    height: 8px;
+    background: linear-gradient(90deg, var(--sage) 0%, var(--sage-light) 50%, var(--sage) 100%);
+    height: 6px;
     left: 0; right: 0;
   }
-  .ndebele-border::before { top: 0; }
-  .ndebele-border::after { bottom: 0; }
+  .leaf-border::before { top: 0; }
+  .leaf-border::after { bottom: 0; }
 
-  .ndebele-side-left,
-  .ndebele-side-right {
+  .leaf-side-left,
+  .leaf-side-right {
     position: fixed;
     top: 0; bottom: 0;
-    width: 8px;
-    background: repeating-linear-gradient(
-      180deg,
-      var(--ndebele-red) 0px, var(--ndebele-red) 20px,
-      var(--ndebele-yellow) 20px, var(--ndebele-yellow) 40px,
-      var(--ndebele-green) 40px, var(--ndebele-green) 60px,
-      var(--ndebele-blue) 60px, var(--ndebele-blue) 80px
-    );
+    width: 6px;
+    background: linear-gradient(180deg, var(--sage) 0%, var(--sage-light) 50%, var(--sage) 100%);
     z-index: 100;
   }
-  .ndebele-side-left { left: 0; }
-  .ndebele-side-right { right: 0; }
+  .leaf-side-left { left: 0; }
+  .leaf-side-right { right: 0; }
 
   /* ===== SECTIONS ===== */
   section {
@@ -81,24 +71,26 @@
 
   /* ===== HERO SECTION ===== */
   .hero {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0a0a 50%, #0a0a1a 100%);
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 50%, var(--sage) 100%);
     text-align: center;
     overflow: hidden;
+    color: var(--text-light);
   }
 
   .hero::before {
     content: '';
     position: absolute;
-    width: 600px; height: 600px;
-    border: 3px solid var(--ndebele-red);
-    transform: rotate(45deg);
-    opacity: 0.1;
-    animation: spin 20s linear infinite;
+    width: 400px; height: 400px;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: breathe 4s ease-in-out infinite;
   }
 
-  @keyframes spin {
-    from { transform: rotate(45deg); }
-    to { transform: rotate(405deg); }
+  @keyframes breathe {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
   }
 
   .hero-content {
@@ -116,7 +108,7 @@
     font-size: 0.9rem;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--ndebele-yellow);
+    color: var(--gold);
     margin-bottom: 20px;
     animation: fadeIn 2s ease-out 0.5s both;
   }
@@ -132,77 +124,59 @@
     font-weight: 900;
     line-height: 1.1;
     margin-bottom: 10px;
-    background: linear-gradient(135deg, var(--ndebele-yellow), var(--ndebele-red), var(--ndebele-yellow));
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 3s ease-in-out infinite;
-  }
-
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    color: var(--text-light);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
 
   .ampersand {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--gold);
     display: block;
-    font-size: 2rem;
-    color: var(--ndebele-white);
-    opacity: 0.6;
-    margin: 5px 0;
-    -webkit-text-fill-color: unset;
+    margin: 10px 0;
   }
 
   .wedding-text {
     font-size: 1.2rem;
     letter-spacing: 8px;
     text-transform: uppercase;
-    color: var(--ndebele-white);
-    opacity: 0.7;
+    color: var(--text-light);
+    opacity: 0.8;
     margin-top: 20px;
   }
 
   .date-line {
     font-size: 1.1rem;
     letter-spacing: 4px;
-    color: var(--ndebele-green);
+    color: var(--gold);
     margin-top: 15px;
     animation: fadeIn 2s ease-out 1s both;
   }
 
-  /* ===== NDEBELE DIAMOND DIVIDER ===== */
-  .diamond-divider {
-    width: 60px; height: 60px;
+  /* ===== BOTANICAL DIVIDER ===== */
+  .botanical-divider {
+    width: 80px;
+    height: 80px;
     margin: 30px auto;
     position: relative;
   }
-  .diamond-divider::before {
-    content: '';
+  .botanical-divider::before {
+    content: '🌿';
+    font-size: 2rem;
     position: absolute;
-    width: 40px; height: 40px;
-    background: var(--ndebele-yellow);
-    transform: rotate(45deg);
-    top: 10px; left: 10px;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  .diamond-divider::after {
-    content: '';
-    position: absolute;
-    width: 20px; height: 20px;
-    background: var(--ndebele-red);
-    transform: rotate(45deg);
-    top: 20px; left: 20px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: sway 3s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+  @keyframes sway {
+    0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
+    50% { transform: translate(-50%, -50%) rotate(5deg); }
   }
 
   /* ===== COUPLE SECTION ===== */
   .couple-section {
-    background: linear-gradient(180deg, var(--bg-dark) 0%, #0a0a0a 100%);
+    background: var(--cream-light);
     text-align: center;
   }
 
@@ -217,12 +191,14 @@
     content: '';
     position: absolute;
     inset: -8px;
-    background: conic-gradient(
-      var(--ndebele-red), var(--ndebele-yellow),
-      var(--ndebele-green), var(--ndebele-blue),
-      var(--ndebele-red)
-    );
-    animation: spin 4s linear infinite;
+    border: 3px solid var(--sage);
+    border-radius: 50%;
+    animation: spin 8s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
   }
 
   .photo-frame img {
@@ -231,7 +207,7 @@
     border-radius: 50%;
     position: relative;
     z-index: 2;
-    border: 4px solid var(--bg-dark);
+    border: 4px solid var(--cream-light);
   }
 
   .photos-row {
@@ -246,21 +222,20 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     margin-top: 15px;
-    color: var(--ndebele-yellow);
+    color: var(--sage-dark);
   }
 
   .photo-role {
     font-size: 0.8rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--ndebele-white);
-    opacity: 0.5;
+    color: var(--brown-light);
     margin-top: 5px;
   }
 
   .heart-icon {
     font-size: 2.5rem;
-    color: var(--ndebele-red);
+    color: var(--sage);
     animation: heartbeat 1.5s ease-in-out infinite;
   }
 
@@ -271,24 +246,25 @@
 
   /* ===== DETAILS SECTION ===== */
   .details-section {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+    background: var(--cream);
     text-align: center;
   }
 
   .detail-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,215,0,0.15);
+    background: var(--cream-light);
+    border: 1px solid var(--sage-light);
     border-radius: 16px;
     padding: 40px;
     max-width: 400px;
     margin: 20px auto;
     animation: fadeInUp 1s ease-out;
+    box-shadow: 0 4px 20px rgba(96, 64, 48, 0.1);
   }
 
   .detail-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
-    color: var(--ndebele-yellow);
+    color: var(--sage-dark);
     margin-bottom: 20px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -313,20 +289,21 @@
     font-size: 0.75rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--ndebele-green);
+    color: var(--sage);
     margin-bottom: 3px;
   }
 
   .detail-value {
     font-size: 1rem;
-    color: var(--ndebele-white);
+    color: var(--text-dark);
     line-height: 1.4;
   }
 
   /* ===== RSVP SECTION ===== */
   .rsvp-section {
-    background: linear-gradient(180deg, #1a0a0a 0%, var(--bg-dark) 100%);
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
     text-align: center;
+    color: var(--text-light);
   }
 
   .rsvp-btn {
@@ -337,8 +314,8 @@
     font-weight: 600;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--ndebele-black);
-    background: linear-gradient(135deg, var(--ndebele-yellow), var(--ndebele-red));
+    color: var(--sage-dark);
+    background: var(--cream-light);
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -349,13 +326,13 @@
 
   .rsvp-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(227,28,61,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   }
 
   .rsvp-phone {
     font-size: 1.2rem;
     letter-spacing: 2px;
-    color: var(--ndebele-yellow);
+    color: var(--gold);
     margin-top: 20px;
   }
 
@@ -363,8 +340,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-style: italic;
-    color: var(--ndebele-white);
-    opacity: 0.8;
+    color: var(--text-light);
+    opacity: 0.9;
     max-width: 500px;
     margin: 30px auto 0;
     line-height: 1.6;
@@ -387,7 +364,7 @@
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 900;
-    color: var(--ndebele-yellow);
+    color: var(--gold);
     display: block;
   }
 
@@ -395,16 +372,8 @@
     font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--ndebele-white);
-    opacity: 0.5;
-  }
-
-  /* ===== NDEBELE PATTERN SVG ===== */
-  .ndebele-pattern {
-    width: 200px;
-    height: 50px;
-    margin: 20px auto;
-    opacity: 0.4;
+    color: var(--text-light);
+    opacity: 0.7;
   }
 
   /* ===== SCROLL ANIMATION ===== */
@@ -425,9 +394,9 @@
     right: 30px;
     width: 50px; height: 50px;
     border-radius: 50%;
-    background: rgba(255,215,0,0.15);
-    border: 2px solid var(--ndebele-yellow);
-    color: var(--ndebele-yellow);
+    background: rgba(144, 160, 128, 0.2);
+    border: 2px solid var(--sage);
+    color: var(--sage);
     font-size: 1.3rem;
     cursor: pointer;
     z-index: 200;
@@ -437,11 +406,16 @@
     justify-content: center;
   }
   .music-toggle:hover {
-    background: rgba(255,215,0,0.3);
+    background: rgba(144, 160, 128, 0.3);
     transform: scale(1.1);
   }
   .music-toggle.playing {
     animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
   }
 
   /* ===== RESPONSIVE ===== */
@@ -457,10 +431,10 @@
 </head>
 <body>
 
-<!-- Ndebele Border -->
-<div class="ndebele-border"></div>
-<div class="ndebele-side-left"></div>
-<div class="ndebele-side-right"></div>
+<!-- Botanical Leaf Border -->
+<div class="leaf-border"></div>
+<div class="leaf-side-left"></div>
+<div class="leaf-side-right"></div>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
@@ -473,7 +447,7 @@
     </h1>
     <div class="wedding-text">Wedding Celebration</div>
     <div class="date-line">Sunday, 29 November 2026</div>
-    <div class="diamond-divider"></div>
+    <div class="botanical-divider"></div>
     <div class="countdown" id="countdown">
       <div class="countdown-item">
         <span class="countdown-number" id="days">--</span>
@@ -499,19 +473,19 @@
 <section class="couple-section">
   <div class="animate-on-scroll">
     <div class="prelude">Together with their families</div>
-    <div class="diamond-divider"></div>
+    <div class="botanical-divider"></div>
     <div class="photos-row">
       <div>
         <div class="photo-frame">
-          <img src="https://placehold.co/400x400/E31C3D/fff?text=Groom" alt="Clement">
+          <img src="https://placehold.co/400x400/90a080/fff?text=Clement" alt="Clement">
         </div>
         <div class="photo-name">Clement</div>
         <div class="photo-role">The Groom</div>
       </div>
-      <div class="heart-icon">❤</div>
+      <div class="heart-icon">♥</div>
       <div>
         <div class="photo-frame">
-          <img src="https://placehold.co/400x400/00843D/fff?text=Bride" alt="Fikile">
+          <img src="https://placehold.co/400x400/604030/fff?text=Fikile" alt="Fikile">
         </div>
         <div class="photo-name">Fikile</div>
         <div class="photo-role">The Bride</div>
@@ -524,7 +498,7 @@
 <section class="details-section">
   <div class="animate-on-scroll">
     <div class="prelude">Celebration Details</div>
-    <div class="diamond-divider"></div>
+    <div class="botanical-divider"></div>
     <div class="detail-card">
       <h3>When & Where</h3>
       <div class="detail-row">
@@ -563,7 +537,7 @@
 <section class="rsvp-section">
   <div class="animate-on-scroll">
     <div class="prelude">We'd love to celebrate with you</div>
-    <div class="diamond-divider"></div>
+    <div class="botanical-divider"></div>
     <p class="closing-message">
       "Two families becoming one.<br>
       Join us as we begin this new chapter."
@@ -581,7 +555,6 @@
 
 <!-- Audio -->
 <audio id="bgMusic" loop>
-  <!-- Add your song file here -->
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
