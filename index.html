@@ -3,388 +3,444 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Clement & Fikile — Wedding Invitation</title>
+<title>Clement & Fikile — Ndebele Wedding Invitation</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --sage: #c0a090;
-    --sage-light: #d0b0a0;
-    --sage-dark: #a08070;
-    --cream: #f0e0d0;
-    --cream-light: #f8ece4;
-    --brown: #806050;
-    --brown-light: #a08070;
-    --text-dark: #2d2d2d;
-    --text-light: #f0f0f0;
-    --gold: #b08050;
+    --ndebele-black: #0a0a0a;
+    --ndebele-white: #ffffff;
+    --ndebele-red: #d4213d;
+    --ndebele-blue: #1a4b8c;
+    --ndebele-yellow: #f5c518;
+    --ndebele-green: #1a7a3a;
   }
 
   body {
     font-family: 'Montserrat', sans-serif;
-    background: url('background-photo.jpg') center/cover no-repeat fixed;
-    color: var(--text-dark);
+    background: var(--ndebele-black);
+    color: var(--ndebele-white);
     overflow-x: hidden;
-    position: relative;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(240, 224, 208, 0.85);
-    z-index: -1;
+    min-height: 100vh;
   }
 
-  /* ===== BOTANICAL LEAF BORDER ===== */
-  .leaf-border {
+  /* ===== GEOMETRIC BORDER FRAME ===== */
+  .border-frame {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1000;
   }
-  .leaf-border::before,
-  .leaf-border::after {
+  .border-frame::before {
     content: '';
     position: absolute;
-    background: linear-gradient(90deg, var(--sage) 0%, var(--sage-light) 50%, var(--sage) 100%);
-    height: 6px;
-    left: 0; right: 0;
+    inset: 0;
+    border: 8px solid var(--ndebele-black);
   }
-  .leaf-border::before { top: 0; }
-  .leaf-border::after { bottom: 0; }
-
-  .leaf-side-left,
-  .leaf-side-right {
-    position: fixed;
-    top: 0; bottom: 0;
-    width: 6px;
-    background: linear-gradient(180deg, var(--sage) 0%, var(--sage-light) 50%, var(--sage) 100%);
-    z-index: 100;
+  .border-frame::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 6px solid var(--ndebele-yellow);
   }
-  .leaf-side-left { left: 0; }
-  .leaf-side-right { right: 0; }
 
-  /* ===== SECTIONS ===== */
-  section {
-    min-height: 100vh;
+  /* ===== TOP GEOMETRIC PANEL ===== */
+  .top-panel {
+    min-height: 35vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .top-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 50vw solid var(--ndebele-red);
+    border-bottom: 35vh solid transparent;
+    z-index: 1;
+  }
+  .top-panel::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 0; height: 0;
+    border-right: 50vw solid var(--ndebele-blue);
+    border-bottom: 35vh solid transparent;
+    z-index: 1;
+  }
+
+  /* Central diamond */
+  .top-diamond {
+    position: absolute;
+    width: 120px; height: 120px;
+    background: var(--ndebele-yellow);
+    transform: rotate(45deg);
+    z-index: 5;
+    border: 4px solid var(--ndebele-black);
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
+  }
+  .top-diamond::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    background: var(--ndebele-red);
+    border: 3px solid var(--ndebele-black);
+  }
+  .top-diamond::after {
+    content: '';
+    position: absolute;
+    inset: 24px;
+    background: var(--ndebele-white);
+    border: 2px solid var(--ndebele-black);
+  }
+
+  /* Zigzag strip */
+  .zigzag-top {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30px;
+    background: 
+      linear-gradient(135deg, var(--ndebele-green) 25%, transparent 25%) -20px 0,
+      linear-gradient(225deg, var(--ndebele-green) 25%, transparent 25%) -20px 0,
+      linear-gradient(315deg, var(--ndebele-green) 25%, transparent 25%),
+      linear-gradient(45deg, var(--ndebele-green) 25%, transparent 25%);
+    background-size: 40px 30px;
+    background-color: var(--ndebele-black);
+    z-index: 10;
+  }
+
+  /* ===== STEPPED STRIP ===== */
+  .stepped-strip {
+    height: 40px;
+    display: flex;
+    width: 100%;
+    z-index: 10;
+  }
+  .step-block {
+    flex: 1;
+    height: 100%;
+    border: 2px solid var(--ndebele-black);
+  }
+
+  /* ===== CENTER SECTION ===== */
+  .center-section {
+    min-height: 40vh;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 60px 40px;
+    background: var(--ndebele-white);
+    padding: 40px 20px;
+    z-index: 10;
+  }
+
+  /* Name frame */
+  .name-frame {
     position: relative;
-  }
-
-  /* ===== HERO SECTION ===== */
-  .hero {
-    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 50%, var(--sage) 100%);
+    padding: 60px 80px;
     text-align: center;
-    overflow: hidden;
-    color: var(--text-light);
   }
-
-  .hero::before {
+  .name-frame::before {
     content: '';
     position: absolute;
-    width: 400px; height: 400px;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: breathe 4s ease-in-out infinite;
+    inset: 0;
+    border: 6px solid var(--ndebele-black);
+  }
+  .name-frame::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 4px solid var(--ndebele-red);
   }
 
-  @keyframes breathe {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
-    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+  /* Corner diamonds */
+  .corner-diamond {
+    position: absolute;
+    width: 30px; height: 30px;
+    background: var(--ndebele-yellow);
+    border: 3px solid var(--ndebele-black);
+    transform: rotate(45deg);
   }
+  .corner-diamond.tl { top: -15px; left: -15px; }
+  .corner-diamond.tr { top: -15px; right: -15px; }
+  .corner-diamond.bl { bottom: -15px; left: -15px; }
+  .corner-diamond.br { bottom: -15px; right: -15px; }
 
-  .hero-content {
-    position: relative;
-    z-index: 10;
-    animation: fadeInUp 1.5s ease-out;
-  }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
+  /* Text styles */
   .prelude {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    animation: fadeIn 2s ease-out 0.5s both;
+    color: var(--ndebele-black);
+    margin-bottom: 15px;
+    font-weight: 600;
   }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
   .couple-names {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
     font-weight: 900;
     line-height: 1.1;
-    margin-bottom: 10px;
-    color: var(--text-light);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: var(--ndebele-black);
+    margin-bottom: 5px;
   }
-
   .ampersand {
-    font-family: 'Great Vibes', cursive;
+    font-family: 'Playfair Display', serif;
     font-size: 3rem;
-    color: var(--gold);
+    font-weight: 900;
+    color: var(--ndebele-red);
     display: block;
-    margin: 10px 0;
+    margin: 5px 0;
   }
-
-  .wedding-text {
-    font-size: 1.2rem;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: var(--text-light);
-    opacity: 0.8;
-    margin-top: 20px;
-  }
-
-  .date-line {
+  .wedding-date {
     font-size: 1.1rem;
     letter-spacing: 4px;
-    color: var(--gold);
+    color: var(--ndebele-blue);
     margin-top: 15px;
-    animation: fadeIn 2s ease-out 1s both;
+    font-weight: 600;
   }
 
-  /* ===== BOTANICAL DIVIDER ===== */
-  .botanical-divider {
-    width: 80px;
-    height: 80px;
-    margin: 30px auto;
-    position: relative;
-  }
-  .botanical-divider::before {
-    content: '🌿';
-    font-size: 2rem;
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    animation: sway 3s ease-in-out infinite;
-  }
-
-  @keyframes sway {
-    0%, 100% { transform: translate(-50%, -50%) rotate(-5deg); }
-    50% { transform: translate(-50%, -50%) rotate(5deg); }
-  }
-
-  /* ===== COUPLE SECTION ===== */
-  .couple-section {
-    background: var(--cream-light);
-    text-align: center;
-  }
-
-  .photo-frame {
-    width: 200px; height: 200px;
-    margin: 20px auto;
-    position: relative;
-    display: inline-block;
-  }
-
-  .photo-frame::before {
-    content: '';
-    position: absolute;
-    inset: -8px;
-    border: 3px solid var(--sage);
-    border-radius: 50%;
-    animation: spin 8s linear infinite;
-  }
-
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  .photo-frame img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    position: relative;
-    z-index: 2;
-    border: 4px solid var(--cream-light);
-  }
-
-  .photos-row {
+  /* Geo divider */
+  .geo-divider {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
   }
-
-  .photo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    margin-top: 15px;
-    color: var(--sage-dark);
+  .geo-divider .line {
+    width: 60px;
+    height: 4px;
+    background: var(--ndebele-black);
   }
-
-  .photo-role {
-    font-size: 0.8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--brown-light);
-    margin-top: 5px;
-  }
-
-  .heart-icon {
-    font-size: 2.5rem;
-    color: var(--sage);
-    animation: heartbeat 1.5s ease-in-out infinite;
-  }
-
-  @keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
+  .geo-divider .diamond {
+    width: 20px; height: 20px;
+    background: var(--ndebele-yellow);
+    border: 3px solid var(--ndebele-black);
+    transform: rotate(45deg);
   }
 
   /* ===== DETAILS SECTION ===== */
   .details-section {
-    background: var(--cream);
-    text-align: center;
+    background: var(--ndebele-white);
+    padding: 40px 20px;
+    position: relative;
+    z-index: 10;
   }
-
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  }
   .detail-card {
-    background: var(--cream-light);
-    border: 1px solid var(--sage-light);
-    border-radius: 16px;
-    padding: 40px;
-    max-width: 400px;
-    margin: 20px auto;
-    animation: fadeInUp 1s ease-out;
-    box-shadow: 0 4px 20px rgba(96, 64, 48, 0.1);
+    text-align: center;
+    padding: 30px 15px;
+    border: 3px solid var(--ndebele-black);
+    position: relative;
   }
+  .detail-card:nth-child(1) { background: var(--ndebele-red); }
+  .detail-card:nth-child(2) { background: var(--ndebele-blue); }
+  .detail-card:nth-child(3) { background: var(--ndebele-green); }
 
-  .detail-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--sage-dark);
-    margin-bottom: 20px;
+  .detail-card .icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .detail-card .label {
+    font-size: 0.7rem;
     letter-spacing: 3px;
     text-transform: uppercase;
+    color: var(--ndebele-white);
+    opacity: 0.8;
+    margin-bottom: 8px;
   }
-
-  .detail-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 18px 0;
-    text-align: left;
-  }
-
-  .detail-icon {
-    font-size: 1.5rem;
-    width: 40px;
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .detail-label {
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--sage);
-    margin-bottom: 3px;
-  }
-
-  .detail-value {
+  .detail-card .value {
+    font-family: 'Playfair Display', serif;
     font-size: 1rem;
-    color: var(--text-dark);
+    font-weight: 700;
+    color: var(--ndebele-white);
     line-height: 1.4;
   }
 
-  /* ===== RSVP SECTION ===== */
-  .rsvp-section {
-    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
-    text-align: center;
-    color: var(--text-light);
+  /* ===== BOTTOM PANEL ===== */
+  .bottom-panel {
+    min-height: 25vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+  }
+  .bottom-panel::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 50vw solid var(--ndebele-green);
+    border-top: 25vh solid transparent;
+    z-index: 1;
+  }
+  .bottom-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 0; height: 0;
+    border-right: 50vw solid var(--ndebele-yellow);
+    border-top: 25vh solid transparent;
+    z-index: 1;
   }
 
+  .rsvp-area {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+  }
+  .rsvp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--ndebele-black);
+    margin-bottom: 15px;
+  }
   .rsvp-btn {
     display: inline-block;
-    padding: 18px 50px;
+    padding: 15px 40px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: var(--sage-dark);
-    background: var(--cream-light);
-    border: none;
-    border-radius: 50px;
+    color: var(--ndebele-white);
+    background: var(--ndebele-black);
+    border: 4px solid var(--ndebele-black);
     cursor: pointer;
     text-decoration: none;
-    transition: transform 0.3s, box-shadow 0.3s;
-    animation: fadeInUp 1s ease-out;
+    transition: all 0.3s;
   }
-
   .rsvp-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: var(--ndebele-red);
+    border-color: var(--ndebele-red);
+    transform: translateY(-2px);
   }
-
   .rsvp-phone {
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    color: var(--gold);
-    margin-top: 20px;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: var(--ndebele-black);
+    margin-top: 15px;
+    font-weight: 600;
   }
 
-  .closing-message {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--text-light);
-    opacity: 0.9;
-    max-width: 500px;
-    margin: 30px auto 0;
-    line-height: 1.6;
+  /* ===== CHEVRON STRIP ===== */
+  .chevron-strip {
+    height: 25px;
+    background: 
+      linear-gradient(135deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
+      linear-gradient(225deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
+      linear-gradient(315deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0,
+      linear-gradient(45deg, var(--ndebele-red) 33.33%, transparent 33.33%) 0 0;
+    background-size: 25px 25px;
+    background-color: var(--ndebele-black);
+    z-index: 10;
+  }
+
+  /* ===== MOTIF STRIP ===== */
+  .geo-motif-strip {
+    height: 20px;
+    display: flex;
+    width: 100%;
+    z-index: 10;
+  }
+  .motif {
+    flex: 1;
+    height: 100%;
+    border: 1px solid var(--ndebele-black);
   }
 
   /* ===== COUNTDOWN ===== */
+  .countdown-section {
+    background: var(--ndebele-black);
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  }
+  .countdown-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--ndebele-yellow);
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+  }
   .countdown {
     display: flex;
-    gap: 20px;
     justify-content: center;
-    margin-top: 30px;
+    gap: 30px;
     flex-wrap: wrap;
   }
-
   .countdown-item {
     text-align: center;
   }
-
   .countdown-number {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 900;
-    color: var(--gold);
+    color: var(--ndebele-white);
     display: block;
+    line-height: 1;
   }
-
   .countdown-label {
     font-size: 0.7rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--text-light);
-    opacity: 0.7;
+    color: var(--ndebele-yellow);
+    margin-top: 5px;
   }
 
-  /* ===== SCROLL ANIMATION ===== */
+  /* ===== MUSIC TOGGLE ===== */
+  .music-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px; height: 50px;
+    border-radius: 0;
+    background: var(--ndebele-yellow);
+    border: 3px solid var(--ndebele-black);
+    color: var(--ndebele-black);
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 2000;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+  }
+  .music-toggle span {
+    transform: rotate(-45deg);
+  }
+  .music-toggle:hover {
+    background: var(--ndebele-red);
+    color: var(--ndebele-white);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
   .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -395,171 +451,145 @@
     transform: translateY(0);
   }
 
-  /* ===== MUSIC TOGGLE ===== */
-  .music-toggle {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    background: rgba(144, 160, 128, 0.2);
-    border: 2px solid var(--sage);
-    color: var(--sage);
-    font-size: 1.3rem;
-    cursor: pointer;
-    z-index: 200;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .music-toggle:hover {
-    background: rgba(144, 160, 128, 0.3);
-    transform: scale(1.1);
-  }
-  .music-toggle.playing {
-    animation: pulse 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-  }
-
   /* ===== RESPONSIVE ===== */
   @media (max-width: 600px) {
-    section { padding: 40px 20px; }
-    .photo-frame { width: 140px; height: 140px; }
-    .photos-row { gap: 20px; }
-    .detail-card { padding: 25px; }
-    .countdown { gap: 12px; }
-    .countdown-number { font-size: 1.8rem; }
+    .name-frame { padding: 40px 30px; }
+    .details-grid { grid-template-columns: 1fr; }
+    .countdown { gap: 15px; }
+    .countdown-number { font-size: 2rem; }
+    .top-diamond { width: 80px; height: 80px; margin-top: -40px; margin-left: -40px; }
+    .top-diamond::before { inset: 8px; }
+    .top-diamond::after { inset: 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Botanical Leaf Border -->
-<div class="leaf-border"></div>
-<div class="leaf-side-left"></div>
-<div class="leaf-side-right"></div>
+<!-- Border Frame -->
+<div class="border-frame"></div>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-content">
+<!-- ===== TOP PANEL ===== -->
+<div class="top-panel">
+  <div class="top-diamond"></div>
+  <div class="zigzag-top"></div>
+</div>
+
+<!-- Stepped Strip -->
+<div class="stepped-strip">
+  <div class="step-block" style="background: var(--ndebele-red);"></div>
+  <div class="step-block" style="background: var(--ndebele-yellow);"></div>
+  <div class="step-block" style="background: var(--ndebele-blue);"></div>
+  <div class="step-block" style="background: var(--ndebele-green);"></div>
+  <div class="step-block" style="background: var(--ndebele-red);"></div>
+  <div class="step-block" style="background: var(--ndebele-yellow);"></div>
+  <div class="step-block" style="background: var(--ndebele-blue);"></div>
+  <div class="step-block" style="background: var(--ndebele-green);"></div>
+</div>
+
+<!-- ===== CENTER SECTION ===== -->
+<div class="center-section">
+  <div class="name-frame animate-on-scroll">
+    <div class="corner-diamond tl"></div>
+    <div class="corner-diamond tr"></div>
+    <div class="corner-diamond bl"></div>
+    <div class="corner-diamond br"></div>
+    
     <div class="prelude">We're getting married</div>
     <h1 class="couple-names">
       Clement
       <span class="ampersand">&</span>
       Fikile
     </h1>
-    <div class="wedding-text">Wedding Celebration</div>
-    <div class="date-line">Sunday, 29 November 2026</div>
-    <div class="botanical-divider"></div>
-    <div class="countdown" id="countdown">
-      <div class="countdown-item">
-        <span class="countdown-number" id="days">--</span>
-        <span class="countdown-label">Days</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="hours">--</span>
-        <span class="countdown-label">Hours</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="mins">--</span>
-        <span class="countdown-label">Minutes</span>
-      </div>
-      <div class="countdown-item">
-        <span class="countdown-number" id="secs">--</span>
-        <span class="countdown-label">Seconds</span>
-      </div>
-    </div>
+    <div class="wedding-date">Sunday, 29 November 2026</div>
   </div>
-</section>
 
-<!-- ===== COUPLE ===== -->
-<section class="couple-section">
-  <div class="animate-on-scroll">
-    <div class="prelude">Together with their families</div>
-    <div class="botanical-divider"></div>
-    <div class="photos-row">
-      <div>
-        <div class="photo-frame">
-          <img src="https://placehold.co/400x400/90a080/fff?text=Clement" alt="Clement">
-        </div>
-        <div class="photo-name">Clement</div>
-        <div class="photo-role">The Groom</div>
-      </div>
-      <div class="heart-icon">♥</div>
-      <div>
-        <div class="photo-frame">
-          <img src="https://placehold.co/400x400/604030/fff?text=Fikile" alt="Fikile">
-        </div>
-        <div class="photo-name">Fikile</div>
-        <div class="photo-role">The Bride</div>
-      </div>
-    </div>
+  <div class="geo-divider">
+    <div class="line"></div>
+    <div class="diamond"></div>
+    <div class="line"></div>
   </div>
-</section>
+</div>
 
-<!-- ===== DETAILS ===== -->
-<section class="details-section">
-  <div class="animate-on-scroll">
-    <div class="prelude">Celebration Details</div>
-    <div class="botanical-divider"></div>
+<!-- Chevron Strip -->
+<div class="chevron-strip"></div>
+
+<!-- ===== DETAILS SECTION ===== -->
+<div class="details-section">
+  <div class="details-grid animate-on-scroll">
     <div class="detail-card">
-      <h3>When & Where</h3>
-      <div class="detail-row">
-        <div class="detail-icon">📅</div>
-        <div>
-          <div class="detail-label">Date</div>
-          <div class="detail-value">Sunday, 29 November 2026</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">⏰</div>
-        <div>
-          <div class="detail-label">Time</div>
-          <div class="detail-value">[Time TBC]</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">📍</div>
-        <div>
-          <div class="detail-label">Venue</div>
-          <div class="detail-value">4766 Johnny Mokua<br>Mohlakeng</div>
-        </div>
-      </div>
-      <div class="detail-row">
-        <div class="detail-icon">👔</div>
-        <div>
-          <div class="detail-label">Dress Code</div>
-          <div class="detail-value">Come as you are</div>
-        </div>
-      </div>
+      <span class="icon">📅</span>
+      <div class="label">Date</div>
+      <div class="value">29 Nov 2026</div>
+    </div>
+    <div class="detail-card">
+      <span class="icon">📍</span>
+      <div class="label">Venue</div>
+      <div class="value">4766 Johnny Mokua<br>Mohlakeng</div>
+    </div>
+    <div class="detail-card">
+      <span class="icon">⏰</span>
+      <div class="label">Time</div>
+      <div class="value">[Time TBC]</div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ===== RSVP ===== -->
-<section class="rsvp-section">
-  <div class="animate-on-scroll">
-    <div class="prelude">We'd love to celebrate with you</div>
-    <div class="botanical-divider"></div>
-    <p class="closing-message">
-      "Two families becoming one.<br>
-      Join us as we begin this new chapter."
-    </p>
-    <br>
+<!-- Motif Strip -->
+<div class="geo-motif-strip">
+  <div class="motif" style="background: var(--ndebele-red);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-blue);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-green);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-yellow);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-red);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-blue);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-green);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+  <div class="motif" style="background: var(--ndebele-yellow);"></div>
+  <div class="motif" style="background: var(--ndebele-white);"></div>
+</div>
+
+<!-- ===== COUNTDOWN ===== -->
+<div class="countdown-section">
+  <div class="countdown-title">Counting Down</div>
+  <div class="countdown">
+    <div class="countdown-item">
+      <span class="countdown-number" id="days">--</span>
+      <span class="countdown-label">Days</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="hours">--</span>
+      <span class="countdown-label">Hours</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="mins">--</span>
+      <span class="countdown-label">Minutes</span>
+    </div>
+    <div class="countdown-item">
+      <span class="countdown-number" id="secs">--</span>
+      <span class="countdown-label">Seconds</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== BOTTOM PANEL ===== -->
+<div class="bottom-panel">
+  <div class="rsvp-area animate-on-scroll">
+    <div class="rsvp-title">RSVP</div>
     <a href="https://wa.me/27835225889?text=Hi%20Clement!%20I%27d%20love%20to%20attend%20your%20wedding%20on%2029%20Nov%20🙏" class="rsvp-btn">
       RSVP via WhatsApp
     </a>
     <div class="rsvp-phone">083 522 5889</div>
   </div>
-</section>
+</div>
 
 <!-- Music Toggle -->
-<button class="music-toggle" id="musicBtn" onclick="toggleMusic()">🎵</button>
+<button class="music-toggle" id="musicBtn" onclick="toggleMusic()"><span>🎵</span></button>
 
 <!-- Audio -->
 <audio id="bgMusic" loop>
@@ -602,12 +632,10 @@ function toggleMusic() {
   const btn = document.getElementById('musicBtn');
   if (isPlaying) {
     audio.pause();
-    btn.classList.remove('playing');
-    btn.textContent = '🎵';
+    btn.innerHTML = '<span>🎵</span>';
   } else {
     audio.play().catch(() => {});
-    btn.classList.add('playing');
-    btn.textContent = '🎶';
+    btn.innerHTML = '<span>🎶</span>';
   }
   isPlaying = !isPlaying;
 }
