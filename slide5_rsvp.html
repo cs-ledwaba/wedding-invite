@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html><head><style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Montserrat', sans-serif; background: #f8f3ec; color: #1a1a1a; width: 1080px; height: 1920px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+body::before { content: ''; position: absolute; inset: 0; border: 12px solid #1a1a1a; }
+body::after { content: ''; position: absolute; inset: 12px; border: 4px solid #6b2737; }
+.diamond { position: absolute; width: 40px; height: 40px; background: #c49a2a; border: 3px solid #1a1a1a; transform: rotate(45deg); }
+.diamond.tl { top: 20px; left: 20px; }
+.diamond.tr { top: 20px; right: 20px; }
+.diamond.bl { bottom: 20px; left: 20px; }
+.diamond.br { bottom: 20px; right: 20px; }
+.rsvp-label { font-size: 14px; letter-spacing: 5px; text-transform: uppercase; color: #6b2737; margin-bottom: 25px; }
+.btn { display: inline-block; padding: 20px 60px; background: #1a1a1a; color: #f8f3ec; font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 4px; text-transform: uppercase; text-decoration: none; }
+.phone { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin-top: 25px; letter-spacing: 4px; }
+.strip { height: 30px; display: flex; margin-top: 40px; width: 80%; }
+.strip div { flex: 1; height: 100%; border: 1px solid #1a1a1a; }
+</style></head><body>
+<div class="diamond tl"></div><div class="diamond tr"></div>
+<div class="diamond bl"></div><div class="diamond br"></div>
+<div class="rsvp-label">Kindly Respond</div>
+<a href="#" class="btn">RSVP via WhatsApp</a>
+<div class="phone">083 522 5889</div>
+<div class="strip">
+<div style="background: #6b2737"></div><div style="background: #f8f3ec"></div>
+<div style="background: #1a4b8c"></div><div style="background: #f8f3ec"></div>
+<div style="background: #c49a2a"></div><div style="background: #f8f3ec"></div>
+<div style="background: #6b2737"></div><div style="background: #f8f3ec"></div>
+<div style="background: #1a4b8c"></div><div style="background: #f8f3ec"></div>
+<div style="background: #c49a2a"></div><div style="background: #f8f3ec"></div>
+<div style="background: #6b2737"></div>
+</div>
+</body></html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --ivory: #f8f3ec;
+    --black: #1a1a1a;
+    --burgundy: #6b2737;
+    --cobalt: #1a4b8c;
+    --mustard: #c49a2a;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--ivory);
+    color: var(--black);
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+  }
+  .slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+  }
+  /* Border */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 12px solid var(--black);
+  }
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 4px solid var(--burgundy);
+  }
+  /* Corner diamonds */
+  .diamond {
+    position: absolute;
+    width: 40px; height: 40px;
+    background: var(--mustard);
+    border: 3px solid var(--black);
+    transform: rotate(45deg);
+    z-index: 10;
+  }
+  .diamond.tl { top: 20px; left: 20px; }
+  .diamond.tr { top: 20px; right: 20px; }
+  .diamond.bl { bottom: 20px; left: 20px; }
+  .diamond.br { bottom: 20px; right: 20px; }
+  
+  .title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 20px;
+  }
+  .main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+  }
+  .divider .line { width: 60px; height: 2px; background: var(--black); }
+  .divider .d {
+    width: 15px; height: 15px;
+    background: var(--burgundy);
+    border: 2px solid var(--black);
+    transform: rotate(45deg);
+  }
+  .photo {
+    width: 400px;
+    height: 500px;
+    object-fit: cover;
+    border: 4px solid var(--black);
+  }
+  .names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 56px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .ampersand {
+    color: var(--burgundy);
+    font-size: 40px;
+  }
+  .text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+  .family { font-weight: 600; color: var(--burgundy); }
+  .honour { font-style: italic; }
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 3px solid var(--black);
+    margin-top: 30px;
+  }
+  .detail {
+    padding: 25px 15px;
+    text-align: center;
+    border-right: 1px solid var(--black);
+  }
+  .detail:last-child { border-right: none; }
+  .detail .icon { color: var(--burgundy); font-size: 20px; margin-bottom: 10px; }
+  .detail .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .detail .label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-top: 5px;
+  }
+  .strip {
+    height: 30px;
+    display: flex;
+    margin-top: 30px;
+    width: 100%;
+  }
+  .strip div {
+    flex: 1;
+    height: 100%;
+    border: 1px solid var(--black);
+  }
+  .rsvp-btn {
+    display: inline-block;
+    padding: 18px 50px;
+    background: var(--black);
+    color: var(--ivory);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  .phone {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    margin-top: 15px;
+    letter-spacing: 3px;
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="diamond tl"></div>
+    <div class="diamond tr"></div>
+    <div class="diamond bl"></div>
+    <div class="diamond br"></div>
+    
+    <div class="title">You are cordially invited</div>
+    <div class="main-title">UMABO</div>
+    <div class="divider">
+      <div class="line"></div>
+      <div class="d"></div>
+      <div class="line"></div>
+    </div>
+    <img src="couple-photo.jpg" class="photo">
+    <div class="divider">
+      <div class="line"></div>
+      <div class="d"></div>
+      <div class="line"></div>
+    </div>
+    <div class="names">
+      Simangaliso
+      <div class="ampersand">&</div>
+      Fikile
+    </div>
+    <div class="divider">
+      <div class="line"></div>
+      <div class="d"></div>
+      <div class="line"></div>
+    </div>
+    <div class="text">
+      The <span class="family">Ledwaba</span> and <span class="family">Nkabinde</span> families
+      hereby invite you to share in the Umabo ceremony
+      <span class="honour">in honour of Simangaliso and Fikile</span>
+    </div>
+    <div class="details-grid">
+      <div class="detail">
+        <div class="icon">◆</div>
+        <div class="value">29 November 2026</div>
+        <div class="label">Date</div>
+      </div>
+      <div class="detail">
+        <div class="icon">◆</div>
+        <div class="value">12h00</div>
+        <div class="label">Time</div>
+      </div>
+      <div class="detail">
+        <div class="icon">◆</div>
+        <div class="value">4766 Johnny Mokua Street<br>Mohlakeng</div>
+        <div class="label">Venue</div>
+      </div>
+    </div>
+    <div class="strip">
+      <div style="background: var(--burgundy)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--cobalt)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--mustard)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--burgundy)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--cobalt)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--mustard)"></div>
+      <div style="background: var(--ivory)"></div>
+      <div style="background: var(--burgundy)"></div>
+    </div>
+    <div style="text-align: center">
+      <div style="font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--burgundy); margin-top: 20px;">Kindly Respond</div>
+      <a href="#" class="rsvp-btn">RSVP via WhatsApp</a>
+      <div class="phone">083 522 5889</div>
+    </div>
+  </div>
+</body>
+</html>
