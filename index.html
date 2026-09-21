@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clement & Fikile — Wedding Invitation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ndebele-red: #E31C3D;
+    --ndebele-yellow: #FFD700;
+    --ndebele-green: #00843D;
+    --ndebele-blue: #002395;
+    --ndebele-black: #1a1a1a;
+    --ndebele-white: #FAFAFA;
+    --bg-dark: #0d0d0d;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-dark);
+    color: var(--ndebele-white);
+    overflow-x: hidden;
+  }
+
+  /* ===== NDEBELE GEOMETRIC BORDER ===== */
+  .ndebele-border {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 100;
+  }
+  .ndebele-border::before,
+  .ndebele-border::after {
+    content: '';
+    position: absolute;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--ndebele-red) 0px, var(--ndebele-red) 20px,
+      var(--ndebele-yellow) 20px, var(--ndebele-yellow) 40px,
+      var(--ndebele-green) 40px, var(--ndebele-green) 60px,
+      var(--ndebele-blue) 60px, var(--ndebele-blue) 80px
+    );
+    height: 8px;
+    left: 0; right: 0;
+  }
+  .ndebele-border::before { top: 0; }
+  .ndebele-border::after { bottom: 0; }
+
+  .ndebele-side-left,
+  .ndebele-side-right {
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 8px;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--ndebele-red) 0px, var(--ndebele-red) 20px,
+      var(--ndebele-yellow) 20px, var(--ndebele-yellow) 40px,
+      var(--ndebele-green) 40px, var(--ndebele-green) 60px,
+      var(--ndebele-blue) 60px, var(--ndebele-blue) 80px
+    );
+    z-index: 100;
+  }
+  .ndebele-side-left { left: 0; }
+  .ndebele-side-right { right: 0; }
+
+  /* ===== SECTIONS ===== */
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    position: relative;
+  }
+
+  /* ===== HERO SECTION ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--bg-dark) 0%, #1a0a0a 50%, #0a0a1a 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border: 3px solid var(--ndebele-red);
+    transform: rotate(45deg);
+    opacity: 0.1;
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(45deg); }
+    to { transform: rotate(405deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    animation: fadeInUp 1.5s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .prelude {
+    font-size: 0.9rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--ndebele-yellow);
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-out 0.5s both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .couple-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--ndebele-yellow), var(--ndebele-red), var(--ndebele-yellow));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .ampersand {
+    display: block;
+    font-size: 2rem;
+    color: var(--ndebele-white);
+    opacity: 0.6;
+    margin: 5px 0;
+    -webkit-text-fill-color: unset;
+  }
+
+  .wedding-text {
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--ndebele-white);
+    opacity: 0.7;
+    margin-top: 20px;
+  }
+
+  .date-line {
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: var(--ndebele-green);
+    margin-top: 15px;
+    animation: fadeIn 2s ease-out 1s both;
+  }
+
+  /* ===== NDEBELE DIAMOND DIVIDER ===== */
+  .diamond-divider {
+    width: 60px; height: 60px;
+    margin: 30px auto;
+    position: relative;
+  }
+  .diamond-divider::before {
+    content: '';
+    position: absolute;
+    width: 40px; height: 40px;
+    background: var(--ndebele-yellow);
+    transform: rotate(45deg);
+    top: 10px; left: 10px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .diamond-divider::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    background: var(--ndebele-red);
+    transform: rotate(45deg);
+    top: 20px; left: 20px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* ===== COUPLE SECTION ===== */
+  .couple-section {
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #0a0a0a 100%);
+    text-align: center;
+  }
+
+  .photo-frame {
+    width: 200px; height: 200px;
+    margin: 20px auto;
+    position: relative;
+    display: inline-block;
+  }
+
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    background: conic-gradient(
+      var(--ndebele-red), var(--ndebele-yellow),
+      var(--ndebele-green), var(--ndebele-blue),
+      var(--ndebele-red)
+    );
+    animation: spin 4s linear infinite;
+  }
+
+  .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    border: 4px solid var(--bg-dark);
+  }
+
+  .photos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .photo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    margin-top: 15px;
+    color: var(--ndebele-yellow);
+  }
+
+  .photo-role {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ndebele-white);
+    opacity: 0.5;
+    margin-top: 5px;
+  }
+
+  .heart-icon {
+    font-size: 2.5rem;
+    color: var(--ndebele-red);
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* ===== DETAILS SECTION ===== */
+  .details-section {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+    text-align: center;
+  }
+
+  .detail-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,215,0,0.15);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 400px;
+    margin: 20px auto;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .detail-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--ndebele-yellow);
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 18px 0;
+    text-align: left;
+  }
+
+  .detail-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .detail-label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ndebele-green);
+    margin-bottom: 3px;
+  }
+
+  .detail-value {
+    font-size: 1rem;
+    color: var(--ndebele-white);
+    line-height: 1.4;
+  }
+
+  /* ===== RSVP SECTION ===== */
+  .rsvp-section {
+    background: linear-gradient(180deg, #1a0a0a 0%, var(--bg-dark) 100%);
+    text-align: center;
+  }
+
+  .rsvp-btn {
+    display: inline-block;
+    padding: 18px 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ndebele-black);
+    background: linear-gradient(135deg, var(--ndebele-yellow), var(--ndebele-red));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeInUp 1s ease-out;
+  }
+
+  .rsvp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(227,28,61,0.3);
+  }
+
+  .rsvp-phone {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: var(--ndebele-yellow);
+    margin-top: 20px;
+  }
+
+  .closing-message {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--ndebele-white);
+    opacity: 0.8;
+    max-width: 500px;
+    margin: 30px auto 0;
+    line-height: 1.6;
+  }
+
+  /* ===== COUNTDOWN ===== */
+  .countdown {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .countdown-item {
+    text-align: center;
+  }
+
+  .countdown-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--ndebele-yellow);
+    display: block;
+  }
+
+  .countdown-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ndebele-white);
+    opacity: 0.5;
+  }
+
+  /* ===== NDEBELE PATTERN SVG ===== */
+  .ndebele-pattern {
+    width: 200px;
+    height: 50px;
+    margin: 20px auto;
+    opacity: 0.4;
+  }
+
+  /* ===== SCROLL ANIMATION ===== */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== MUSIC TOGGLE ===== */
+  .music-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: rgba(255,215,0,0.15);
+    border: 2px solid var(--ndebele-yellow);
+    color: var(--ndebele-yellow);
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 200;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .music-toggle:hover {
+    background: rgba(255,215,0,0.3);
+    transform: scale(1.1);
+  }
+  .music-toggle.playing {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    section { padding: 40px 20px; }
+    .photo-frame { width: 140px; height: 140px; }
+    .photos-row { gap: 20px; }
+    .detail-card { padding: 25px; }
+    .countdown { gap: 12px; }
+    .countdown-number { font-size: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ndebele Border -->
+<div class="ndebele-border"></div>
+<div class="ndebele-side-left"></div>
+<div class="ndebele-side-right"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="prelude">We're getting married</div>
+    <h1 class="couple-names">
+      Clement
+      <span class="ampersand">&</span>
+      Fikile
+    </h1>
+    <div class="wedding-text">Wedding Celebration</div>
+    <div class="date-line">Sunday, 29 November 2026</div>
+    <div class="diamond-divider"></div>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item">
+        <span class="countdown-number" id="days">--</span>
+        <span class="countdown-label">Days</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="hours">--</span>
+        <span class="countdown-label">Hours</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="mins">--</span>
+        <span class="countdown-label">Minutes</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="secs">--</span>
+        <span class="countdown-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COUPLE ===== -->
+<section class="couple-section">
+  <div class="animate-on-scroll">
+    <div class="prelude">Together with their families</div>
+    <div class="diamond-divider"></div>
+    <div class="photos-row">
+      <div>
+        <div class="photo-frame">
+          <img src="https://placehold.co/400x400/E31C3D/fff?text=Groom" alt="Clement">
+        </div>
+        <div class="photo-name">Clement</div>
+        <div class="photo-role">The Groom</div>
+      </div>
+      <div class="heart-icon">❤</div>
+      <div>
+        <div class="photo-frame">
+          <img src="https://placehold.co/400x400/00843D/fff?text=Bride" alt="Fikile">
+        </div>
+        <div class="photo-name">Fikile</div>
+        <div class="photo-role">The Bride</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DETAILS ===== -->
+<section class="details-section">
+  <div class="animate-on-scroll">
+    <div class="prelude">Celebration Details</div>
+    <div class="diamond-divider"></div>
+    <div class="detail-card">
+      <h3>When & Where</h3>
+      <div class="detail-row">
+        <div class="detail-icon">📅</div>
+        <div>
+          <div class="detail-label">Date</div>
+          <div class="detail-value">Sunday, 29 November 2026</div>
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">⏰</div>
+        <div>
+          <div class="detail-label">Time</div>
+          <div class="detail-value">[Time TBC]</div>
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">📍</div>
+        <div>
+          <div class="detail-label">Venue</div>
+          <div class="detail-value">4766 Johnny Mokua<br>Mohlakeng</div>
+        </div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-icon">👔</div>
+        <div>
+          <div class="detail-label">Dress Code</div>
+          <div class="detail-value">Come as you are</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RSVP ===== -->
+<section class="rsvp-section">
+  <div class="animate-on-scroll">
+    <div class="prelude">We'd love to celebrate with you</div>
+    <div class="diamond-divider"></div>
+    <p class="closing-message">
+      "Two families becoming one.<br>
+      Join us as we begin this new chapter."
+    </p>
+    <br>
+    <a href="https://wa.me/27835225889?text=Hi%20Clement!%20I%27d%20love%20to%20attend%20your%20wedding%20on%2029%20Nov%20🙏" class="rsvp-btn">
+      RSVP via WhatsApp
+    </a>
+    <div class="rsvp-phone">083 522 5889</div>
+  </div>
+</section>
+
+<!-- Music Toggle -->
+<button class="music-toggle" id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+<!-- Audio -->
+<audio id="bgMusic" loop>
+  <!-- Add your song file here -->
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Countdown
+const weddingDate = new Date('2026-11-29T10:00:00+02:00');
+function updateCountdown() {
+  const now = new Date();
+  const diff = weddingDate - now;
+  if (diff <= 0) return;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
+  document.getElementById('days').textContent = days;
+  document.getElementById('hours').textContent = hours;
+  document.getElementById('mins').textContent = mins;
+  document.getElementById('secs').textContent = secs;
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.2 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Music
+let isPlaying = false;
+function toggleMusic() {
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if (isPlaying) {
+    audio.pause();
+    btn.classList.remove('playing');
+    btn.textContent = '🎵';
+  } else {
+    audio.play().catch(() => {});
+    btn.classList.add('playing');
+    btn.textContent = '🎶';
+  }
+  isPlaying = !isPlaying;
+}
+</script>
+
+</body>
+</html>
