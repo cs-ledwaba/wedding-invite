@@ -365,6 +365,33 @@
     font-style: italic;
   }
 
+  /* ===== MUSIC TOGGLE ===== */
+  .music-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px; height: 50px;
+    border-radius: 0;
+    background: var(--mustard);
+    border: 3px solid var(--black);
+    color: var(--black);
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 2000;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+  }
+  .music-toggle span {
+    transform: rotate(-45deg);
+  }
+  .music-toggle:hover {
+    background: var(--burgundy);
+    color: var(--ivory);
+  }
+
   /* ===== ANIMATIONS ===== */
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -410,7 +437,7 @@
 
   <!-- ===== TOP HEADING ===== -->
   <div class="top-heading animate-on-scroll">
-    <div class="umabo-label">Umabo Ceremony</div>
+    <div class="umabo-label">Something Traditional</div>
     <div class="ceremony-label">UMABO</div>
   </div>
 
@@ -510,6 +537,14 @@
 
 </div>
 
+<!-- Music Toggle -->
+<button class="music-toggle" id="musicBtn" onclick="toggleMusic()"><span>🎵</span></button>
+
+<!-- Audio -->
+<audio id="bgMusic" loop>
+  <source src="marato-fela.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
@@ -520,6 +555,21 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.2 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Music
+let isPlaying = false;
+function toggleMusic() {
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('musicBtn');
+  if (isPlaying) {
+    audio.pause();
+    btn.innerHTML = '<span>🎵</span>';
+  } else {
+    audio.play().catch(() => {});
+    btn.innerHTML = '<span>🎶</span>';
+  }
+  isPlaying = !isPlaying;
+}
 </script>
 
 </body>
