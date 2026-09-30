@@ -491,11 +491,6 @@
                 </div>
                 
                 <div class="form-group animate delay-4">
-                    <label>Dietary Requirements</label>
-                    <input type="text" id="dietary" placeholder="Any dietary requirements?">
-                </div>
-                
-                <div class="form-group animate delay-4">
                     <label>Message to the Couple</label>
                     <input type="text" id="message" placeholder="A word of blessing or love (optional)">
                 </div>
@@ -583,7 +578,6 @@
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 attendance: document.querySelector('.toggle-btn.active').dataset.value,
-                dietary: document.getElementById('dietary').value.trim(),
                 message: document.getElementById('message').value.trim(),
                 timestamp: new Date().toISOString()
             };
