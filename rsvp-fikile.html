@@ -490,16 +490,6 @@
                     </div>
                 </div>
                 
-                <div class="form-group animate delay-3">
-                    <label>Number of Guests</label>
-                    <select id="guests">
-                        <option value="1">1 Guest</option>
-                        <option value="2" selected>2 Guests</option>
-                        <option value="3">3 Guests</option>
-                        <option value="4">4 Guests</option>
-                    </select>
-                </div>
-                
                 <div class="form-group animate delay-4">
                     <label>Dietary Requirements</label>
                     <input type="text" id="dietary" placeholder="Any dietary requirements?">
@@ -593,7 +583,6 @@
                 name: document.getElementById('name').value.trim(),
                 phone: document.getElementById('phone').value.trim(),
                 attendance: document.querySelector('.toggle-btn.active').dataset.value,
-                guests: document.getElementById('guests').value,
                 dietary: document.getElementById('dietary').value.trim(),
                 message: document.getElementById('message').value.trim(),
                 timestamp: new Date().toISOString()

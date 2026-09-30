@@ -27,13 +27,12 @@ function doPost(e) {
         'Full Name',
         'Phone Number',
         'Attendance',
-        'Number of Guests',
         'Dietary Requirements',
         'Message',
         'Submitted At'
       ]);
       // Format header row
-      const headerRange = sheet.getRange(1, 1, 1, 8);
+      const headerRange = sheet.getRange(1, 1, 1, 7);
       headerRange.setFontWeight('bold');
       headerRange.setBackground('#4a2a1e');
       headerRange.setFontColor('#f9e2d4');
@@ -46,14 +45,13 @@ function doPost(e) {
       data.name || '',
       data.phone || '',
       data.attendance || '',
-      data.guests || '',
       data.dietary || '',
       data.message || '',
       new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })
     ]);
     
     // Auto-resize columns
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 7; i++) {
       sheet.autoResizeColumn(i);
     }
     
