@@ -16,7 +16,6 @@
             --burgundy: #793729;
             --cream: #f9e2d4;
             --gold: #c49a6a;
-            --whatsapp: #25d366;
         }
         
         body {
@@ -169,6 +168,8 @@
             font-size: 18px;
             outline: none;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
+            border-radius: 0;
         }
         
         .form-group input:focus,
@@ -182,8 +183,6 @@
         }
         
         .form-group select {
-            appearance: none;
-            -webkit-appearance: none;
             cursor: pointer;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23c49a6a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
@@ -247,47 +246,114 @@
             box-shadow: 0 10px 30px rgba(121,55,41,0.4);
         }
         
-        /* WhatsApp Section */
-        .whatsapp-section {
-            margin-bottom: 50px;
-            text-align: center;
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
         
-        .whatsapp-btn {
-            display: inline-flex;
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(249,226,212,0.3);
+            border-top-color: var(--cream);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Success Overlay */
+        .success-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,10,10,0.95);
+            z-index: 100;
             align-items: center;
-            gap: 12px;
-            padding: 18px 40px;
-            background: var(--whatsapp);
-            border: none;
-            color: white;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .success-overlay.show {
+            display: flex;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+        
+        .success-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 36px;
+            color: var(--cream);
+            margin-bottom: 15px;
+        }
+        
+        .success-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: var(--warm-brown);
+            margin-bottom: 10px;
+        }
+        
+        .success-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+        
+        .success-close {
+            padding: 14px 40px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--cream);
             font-family: 'Montserrat', sans-serif;
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 2px;
+            font-size: 11px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
         }
         
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(37,211,102,0.3);
+        .success-close:hover {
+            background: var(--gold);
+            color: var(--black);
         }
         
-        .whatsapp-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
+        /* Error message */
+        .error-text {
+            color: #c0392b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
         }
         
-        .whatsapp-note {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            color: var(--warm-brown);
-            margin-top: 20px;
-            font-style: italic;
+        .error-text.show {
+            display: block;
         }
         
         /* Details Grid */
@@ -330,32 +396,6 @@
             color: var(--gold);
         }
         
-        /* Success Message */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 40px;
-            background: rgba(37,211,102,0.1);
-            border: 1px solid var(--whatsapp);
-            margin-bottom: 30px;
-        }
-        
-        .success-message.show {
-            display: block;
-        }
-        
-        .success-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: var(--whatsapp);
-        }
-        
-        .success-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            color: var(--whatsapp);
-        }
-        
         /* Footer */
         .footer {
             width: 100%;
@@ -364,6 +404,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             margin-top: auto;
         }
         
@@ -373,16 +414,19 @@
             color: var(--warm-brown);
         }
         
+        .footer-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(139,104,85,0.5);
+            margin-top: 10px;
+        }
+        
         /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .animate {
@@ -438,10 +482,10 @@
                 </div>
                 
                 <div class="attendance-toggle animate delay-3">
-                    <div class="toggle-btn active" data-value="accept" onclick="toggleAttendance(this)">
+                    <div class="toggle-btn active" data-value="Joyfully Accepts" onclick="toggleAttendance(this)">
                         ✓ Accept
                     </div>
-                    <div class="toggle-btn" data-value="decline" onclick="toggleAttendance(this)">
+                    <div class="toggle-btn" data-value="Respectfully Declines" onclick="toggleAttendance(this)">
                         ✗ Decline
                     </div>
                 </div>
@@ -461,41 +505,29 @@
                     <input type="text" id="dietary" placeholder="Any dietary requirements?">
                 </div>
                 
-                <button type="submit" class="submit-btn animate delay-4">
+                <div class="form-group animate delay-4">
+                    <label>Message to the Couple</label>
+                    <input type="text" id="message" placeholder="A word of blessing or love (optional)">
+                </div>
+                
+                <button type="submit" class="submit-btn animate delay-4" id="submitBtn">
                     Submit RSVP
                 </button>
+                
+                <div class="error-text" id="errorText">
+                    Something went wrong. Please try again or contact us directly.
+                </div>
             </form>
-            
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">✓</div>
-                <div class="success-text">Thank you for your response!</div>
-            </div>
         </div>
         
-        <!-- WhatsApp Section -->
-        <div class="whatsapp-section animate delay-4">
+        <!-- Event Details -->
+        <div class="details-section animate delay-4">
             <div class="divider">
                 <div class="line"></div>
                 <div class="diamond"></div>
                 <div class="line"></div>
             </div>
             
-            <a href="https://wa.me/27835225889?text=Hello%20Fikile%20and%20Smanga!%20I%27m%20confirming%20my%20attendance%20for%20your%20Umabo%20ceremony%20on%20November%2029th." 
-               class="whatsapp-btn" 
-               target="_blank">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                RSVP via WhatsApp
-            </a>
-            
-            <p class="whatsapp-note">
-                Click to send us a message directly on WhatsApp
-            </p>
-        </div>
-        
-        <!-- Event Details -->
-        <div class="details-section animate delay-4">
             <div class="details-grid">
                 <div class="detail-item">
                     <div class="detail-icon">◆</div>
@@ -516,55 +548,88 @@
         </div>
     </div>
     
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Thank You</div>
+        <div class="success-text">Your response has been recorded</div>
+        <div class="success-name" id="successName"></div>
+        <button class="success-close" onclick="closeSuccess()">Close</button>
+    </div>
+    
     <!-- Black Footer -->
     <div class="footer">
         <div class="footer-text">We look forward to celebrating with you</div>
+        <div class="footer-sub">Something Traditional</div>
     </div>
     
     <script>
+        // ============================================================
+        // GOOGLE APPS SCRIPT WEB APP URL
+        // After setting up the Apps Script, paste the URL below:
+        // ============================================================
+        const SCRIPT_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+        
         // Toggle attendance
         function toggleAttendance(btn) {
             document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         }
         
+        // Close success overlay
+        function closeSuccess() {
+            document.getElementById('successOverlay').classList.remove('show');
+        }
+        
         // Form submission
-        document.getElementById('rsvpForm').addEventListener('submit', function(e) {
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const attendance = document.querySelector('.toggle-btn.active').dataset.value;
-            const guests = document.getElementById('guests').value;
-            const dietary = document.getElementById('dietary').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const errorText = document.getElementById('errorText');
             
-            // Create WhatsApp message
-            const message = `🎉 *RSVP Confirmation*\n\n` +
-                          `👤 *Name:* ${name}\n` +
-                          `📱 *Phone:* ${phone}\n` +
-                          `✅ *Attendance:* ${attendance === 'accept' ? 'Accepts with joy!' : 'Declines with regret'}\n` +
-                          `👥 *Guests:* ${guests}\n` +
-                          `🍽️ *Dietary:* ${dietary || 'None specified'}\n\n` +
-                          `💍 *Fikile & Simangaliso*\n` +
-                          `📅 29 November 2026\n` +
-                          `📍 4766 Johnny Mokua Street, Mohlakeng`;
+            // Get form values
+            const data = {
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                attendance: document.querySelector('.toggle-btn.active').dataset.value,
+                guests: document.getElementById('guests').value,
+                dietary: document.getElementById('dietary').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                timestamp: new Date().toISOString()
+            };
             
-            // Open WhatsApp with pre-filled message
-            const whatsappUrl = `https://wa.me/27835225889?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            // Disable button, show loading
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+            errorText.classList.remove('show');
             
-            // Show success message
-            document.getElementById('rsvpForm').style.display = 'none';
-            document.getElementById('successMessage').classList.add('show');
-            
-            // Auto-hide success message after 5 seconds
-            setTimeout(() => {
-                document.getElementById('successMessage').classList.remove('show');
-                document.getElementById('rsvpForm').style.display = 'block';
-                document.getElementById('rsvpForm').reset();
+            try {
+                // Send to Google Sheets via Apps Script
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success
+                document.getElementById('successName').textContent = data.name;
+                document.getElementById('successOverlay').classList.add('show');
+                
+                // Reset form
+                this.reset();
                 document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-                document.querySelector('[data-value="accept"]').classList.add('active');
-            }, 5000);
+                document.querySelector('[data-value="Joyfully Accepts"]').classList.add('active');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                errorText.classList.add('show');
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Submit RSVP';
+            }
         });
     </script>
 </body>
