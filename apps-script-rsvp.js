@@ -27,7 +27,6 @@ function doPost(e) {
         'Full Name',
         'Phone Number',
         'Attendance',
-        'Message',
         'Submitted At'
       ]);
       // Format header row
